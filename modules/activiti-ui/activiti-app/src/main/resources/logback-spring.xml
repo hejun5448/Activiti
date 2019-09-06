@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+	<!-- <logger name="org.springframework.web" level="INFO" /> 
+	<logger name="org.springboot.sample"  level="TRACE" /> -->
+
+	<!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 -->
+	<property name="LOG_HOME" value="E:/temp/logs/activiti-app" />
+	<property name="logTextPattern"
+		value="%d{yyyy-MM-dd HH:mm:ss.SSS} %X{username} %-5level %logger{80}[%L] - %msg%n" />
+	<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+	<property name="logTextPattern2"
+		value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n" />
+	<property name="logTextPattern3"
+		value="%d{yyyy-MM-dd HH:mm:ss.SSS} %X{username} %-5level %logger{80}[%L] [%file:%line] - %msg%n" />
+
+	<!-- 控制台输出 -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${logTextPattern2}</pattern>
+		</encoder>
+	</appender>	
+	<!-- 同时按照日期和大小分割日志-->
+	<appender name="ROLLING"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>activiti-app.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${LOG_HOME}/activiti-app_%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+			<!-- each file should be at most 100MB, keep 60 days worth of history, 
+				but at most 20GB -->
+			<maxFileSize>20MB</maxFileSize>
+			<maxHistory>60</maxHistory>
+			<totalSizeCap>10GB</totalSizeCap>
+		</rollingPolicy>
+
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${logTextPattern}</pattern>
+		</encoder>
+	</appender>
+	<!-- 按照每天生成日志文件 -->
+    <appender name="FILE"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Prudent>true</Prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名 -->
+            <FileNamePattern>${LOG_HOME}/activiti-app.%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <!--日志文件保留天数 -->
+            <MaxHistory>30</MaxHistory>
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${logTextPattern}</pattern>
+        </encoder>
+        <!--日志文件最大的大小 -->
+        <triggeringPolicy
+            class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>100MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+	<!-- 将日志写入数据库 -->
+    <!-- <appender name="DB-CLASSIC-MYSQL-POOL" class="ch.qos.logback.classic.db.DBAppender">  
+        <connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">  
+            <dataSource class="com.alibaba.druid.pool.DruidDataSource">  
+                <driverClassName>com.mysql.jdbc.Driver</driverClassName>  
+                <url>jdbc:mysql://localhost:3306/cib-mis-front?characterEncoding=UTF-8</url>  
+                <username>root</username>  
+                <password>hejun5918</password>
+            </dataSource>  
+        </connectionSource>  
+    </appender> -->
+
+	<!-- show parameters for hibernate sql 专为 Hibernate 定制 -->
+	<logger name="org.hibernate.type.descriptor.sql.BasicBinder"
+		level="TRACE" />
+	<logger name="org.hibernate.type.descriptor.sql.BasicExtractor"
+		level="DEBUG" />
+	<logger name="org.hibernate.SQL" level="DEBUG" />
+	<logger name="org.hibernate.engine.QueryParameters" level="DEBUG" />
+	<logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG" />
+
+	<!--myibatis log configure -->
+	<!-- <logger name="com.apache.ibatis" level="TRACE" />
+	<logger name="java.sql.Connection" level="DEBUG" />
+	<logger name="java.sql.Statement" level="DEBUG" />
+	<logger name="java.sql.PreparedStatement" level="DEBUG" /> -->
+
+	<!-- 日志输出级别 -->
+	<root level="INFO">
+		<!-- <appender-ref ref="ROLLING" /> -->
+		<!-- <appender-ref ref="CONSOLE" /> -->
+		<appender-ref ref="FILE" />
+		<!-- <appender-ref ref="DB-CLASSIC-MYSQL-POOL" /> -->
+	</root>
+	
+
+	<!-- 开发、测试环境 -->
+	<springProfile name="dev,test">
+		<logger name="org.springframework.web" level="INFO" additivity="false" />
+		<logger name="org.springboot.sample" level="INFO" additivity="false" />
+		<logger name="com.xmhd" level="DEBUG" />
+		<logger name="org.apache" level="INFO" />
+	</springProfile>
+
+	<!-- 生产环境 -->
+	<springProfile name="pro">
+		<logger name="org.springframework.web" level="ERROR"
+			additivity="false" />
+		<logger name="org.springboot.sample" level="ERROR" additivity="false" />
+		<logger name="com.xmhd" level="INFO" additivity="false" />
+		<appender-ref ref="FILE" />
+	</springProfile>
+
+</configuration>

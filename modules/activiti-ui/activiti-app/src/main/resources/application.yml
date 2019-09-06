@@ -1,0 +1,7 @@
+liquibase:
+  enabled: false
+
+server:  port: 9999  
+  context-path: "/activiti-app"
+spring:  activiti:    check-process-definitions: false  
+management:  security:    enabled: false    

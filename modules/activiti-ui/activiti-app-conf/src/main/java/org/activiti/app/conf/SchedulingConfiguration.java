@@ -24,21 +24,21 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-@Configuration
-@EnableScheduling
-public class SchedulingConfiguration implements SchedulingConfigurer {
-
-    private final Logger log = LoggerFactory.getLogger(SchedulingConfiguration.class);
-
-    @Override
-    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
-        taskRegistrar.setScheduler(taskExecutor());
-    }
-    
-    @Bean(destroyMethod="shutdownNow")
-    public Executor taskExecutor() {
-    	ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5);
-    	return scheduledExecutorService;
-    }
-
-}
+//@Configuration
+//@EnableScheduling
+//public class SchedulingConfiguration implements SchedulingConfigurer {
+//
+//    private final Logger log = LoggerFactory.getLogger(SchedulingConfiguration.class);
+//
+//    @Override
+//    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+//        taskRegistrar.setScheduler(taskExecutor());
+//    }
+//    
+//    @Bean(destroyMethod="shutdownNow")
+//    public Executor taskExecutor() {
+//    	ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5);
+//    	return scheduledExecutorService;
+//    }
+//
+//}
