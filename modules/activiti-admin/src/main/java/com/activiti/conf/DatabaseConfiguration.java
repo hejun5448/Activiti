@@ -16,7 +16,7 @@ import com.activiti.domain.generator.MinimalDataGenerator;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import liquibase.integration.spring.SpringLiquibase;
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.ejb.HibernatePersistence;
+import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
-import org.springframework.orm.hibernate4.HibernateExceptionTranslator;
+import org.springframework.orm.hibernate5.HibernateExceptionTranslator;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -148,7 +148,7 @@ public class DatabaseConfiguration {
     public EntityManagerFactory entityManagerFactory() {
         log.debug("Configuring EntityManager");
         LocalContainerEntityManagerFactoryBean lcemfb = new LocalContainerEntityManagerFactoryBean();
-        lcemfb.setPersistenceProvider(new HibernatePersistence());
+        lcemfb.setPersistenceProvider(new HibernatePersistenceProvider());
         lcemfb.setPersistenceUnitName("persistenceUnit");
         lcemfb.setDataSource(dataSource());
         lcemfb.setJpaDialect(new HibernateJpaDialect());

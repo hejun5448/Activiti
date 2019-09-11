@@ -1,5 +1,9 @@
 package org.activiti.app.ui;
 
+import java.util.EnumSet;
+
+import javax.servlet.DispatcherType;
+
 import org.activiti.app.conf.ApplicationConfiguration;
 import org.activiti.app.servlet.ApiDispatcherServletConfiguration;
 import org.activiti.app.servlet.AppDispatcherServletConfiguration;
@@ -7,15 +11,17 @@ import org.activiti.spring.boot.SecurityAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class,
-		org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class})
+		org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class})
 @Import({ApplicationConfiguration.class})
 public class ActivitiUIApplication extends SpringBootServletInitializer{
 
@@ -56,5 +62,15 @@ public class ActivitiUIApplication extends SpringBootServletInitializer{
 		registrationBean.setName("app");
 		
 		return registrationBean;
+	}
+	
+	@Bean
+	public FilterRegistrationBean openEntityManagerInViewFilter() {
+		FilterRegistrationBean bean = new FilterRegistrationBean(new OpenEntityManagerInViewFilter());
+		bean.addUrlPatterns("/*");
+		bean.setName("openEntityManagerInViewFilter");
+		bean.setOrder(-200);
+		bean.setDispatcherTypes(EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.ASYNC));
+		return bean;
 	}
 }

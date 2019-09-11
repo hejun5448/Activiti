@@ -17,10 +17,14 @@
 
 	<properties>
 		<!-- Libraries versions -->
-		<hibernate.version>4.2.16.Final</hibernate.version>
 		<codahale.metrics.version>3.0.2</codahale.metrics.version>
 		<hazelcastcache.version>3.1.5</hazelcastcache.version>
 		<activiti.version>6.0.1-SNAPSHOT</activiti.version>
+		<hibernate.version>5.2.17.Final</hibernate.version>
+		<hibernate-validator.version>6.0.13.Final</hibernate-validator.version>
+		<jackson.version>2.9.7</jackson.version>
+		<spring.version>5.0.10.RELEASE</spring.version>
+		<spring.boot.version>2.0.6.RELEASE</spring.boot.version>
 	</properties>
 
 	<modules>
@@ -48,23 +52,127 @@
 			<dependency>
 				<groupId>org.activiti</groupId>
 				<artifactId>activiti-app-logic</artifactId>
-				<version>${activiti.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.activiti</groupId>
 				<artifactId>activiti-app-rest</artifactId>
-				<version>${activiti.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.activiti</groupId>
 				<artifactId>activiti-app-conf</artifactId>
-				<version>${activiti.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.activiti</groupId>
 				<artifactId>editor-image-generator</artifactId>
 				<version>${activiti.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-image-generator</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-dmn-json-converter</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-dmn-api</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-form-api</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-common-rest</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-dmn-xml-converter</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-process-validation</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-dmn-model</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-form-json-converter</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-form-engine</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-form-model</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-bpmn-converter</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-bpmn-layout</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-bpmn-model</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-dmn-engine</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-dmn-engine-configurator</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-engine</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-form-engine-configurator</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-json-converter</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-rest</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-spring</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+
 
 			<!-- COMMON dependencies -->
 			<dependency>
@@ -90,7 +198,7 @@
 			<dependency>
 				<groupId>javax.validation</groupId>
 				<artifactId>validation-api</artifactId>
-				<version>1.1.0.Final</version>
+				<version>2.0.1.Final</version>
 			</dependency>
 
 			<!-- JODA TIME -->
@@ -102,14 +210,14 @@
 			<dependency>
 				<groupId>org.jadira.usertype</groupId>
 				<artifactId>usertype.core</artifactId>
-				<version>3.1.0.CR10</version>
+				<version>6.0.1.GA</version>
 			</dependency>
 
 			<!-- EMAIL -->
 			<dependency>
 				<groupId>org.freemarker</groupId>
 				<artifactId>freemarker</artifactId>
-				<version>2.3.27-incubating</version>
+				<version>2.3.28</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-validator</groupId>

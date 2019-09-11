@@ -6,13 +6,14 @@
 	<parent>
 		<groupId>org.activiti</groupId>
 		<artifactId>activiti-ui-root</artifactId>
-		<version>6.0.1-SNAPSHOT</version>
+		<version>6.0.1-boot2</version>
 	</parent>
 	<artifactId>activiti-app</artifactId>
 	<packaging>war</packaging>
 
 	<properties>
 		<suppressionFile>${basedir}/../../../dependency-check-suppression.xml</suppressionFile>
+		<!-- <spring.boot.version>2.0.6.RELEASE</spring.boot.version> -->
 	</properties>
 
 	<dependencies>
@@ -24,22 +25,23 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+			</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
+			</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
+			</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-hateoas</artifactId>
-		</dependency>
+			</dependency>
 		<dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-app-conf</artifactId>
+			<version>6.0.1-boot2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -50,6 +52,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 	</dependencies>
+
 
 	<build>
 		<finalName>activiti-app</finalName>

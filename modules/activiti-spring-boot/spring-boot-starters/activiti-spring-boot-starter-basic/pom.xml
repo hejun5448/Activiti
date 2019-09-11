@@ -11,8 +11,10 @@
 
 	<artifactId>activiti-spring-boot-starter-basic</artifactId>
 
+
 	<properties>
 		<activiti.version>6.0.1-SNAPSHOT</activiti.version>
+		<spring.boot.version>2.0.6.RELEASE</spring.boot.version>
 	</properties>
 
 	<dependencies>
@@ -21,20 +23,22 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
+			<version>${spring.boot.version}</version>
 		</dependency>
 
 		<!-- common -->
 		<dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-engine</artifactId>
-			</dependency>
+		</dependency>
 		<dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-spring</artifactId>
-			</dependency>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<version>${spring.boot.version}</version>
 		</dependency>
 
 		<!-- rest api -->
@@ -74,6 +78,30 @@
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-bpmn-layout</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-form-engine</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-form-engine-configurator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-dmn-engine</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-dmn-engine-configurator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-dmn-xml-converter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-form-json-converter</artifactId>
 		</dependency>
 
 

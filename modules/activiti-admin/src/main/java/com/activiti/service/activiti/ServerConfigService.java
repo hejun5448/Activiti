@@ -59,7 +59,7 @@ public class ServerConfigService extends AbstractEncryptingService {
 
     @Transactional
     public ServerConfig findOne(Long id) {
-        return serverConfigRepository.findOne(id);
+        return serverConfigRepository.getOne(id);
     }
 
     @Transactional
